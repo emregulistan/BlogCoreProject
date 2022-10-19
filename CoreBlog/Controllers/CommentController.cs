@@ -1,5 +1,6 @@
 ﻿using CoreBlog.Business.Concrete;
 using CoreBlog.DataAccess.EntityFramework;
+using CoreBlog.Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreBlog.Controllers
@@ -11,8 +12,18 @@ namespace CoreBlog.Controllers
 		{
 			return View();
 		}
+		[HttpGet]
 		public PartialViewResult PartialAddComment()
 		{
+			return PartialView();
+		}		
+		[HttpPost]
+		public PartialViewResult PartialAddComment(Comment p)
+		{
+			p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+			p.CommentStatus = true;
+			p.BlogID = 14;
+			cm.CommentAdd(p);
 			return PartialView();
 		}
 

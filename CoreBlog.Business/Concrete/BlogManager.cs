@@ -52,6 +52,10 @@ namespace CoreBlog.Business.Concrete
 		{
 			return _blog.GetListAll();
 		}
+		public List<Blog> GetLast3Blog()
+		{
+			return _blog.GetListAll().Take(3).ToList();
+		}
 
 		public List<Blog> GetBlogListByWriter(int id)
 		{

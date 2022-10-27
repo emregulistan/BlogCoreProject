@@ -17,23 +17,21 @@ namespace CoreBlog.Business.Concrete
         {
             _category = category;
         }
-
-        public void CategoryAdd(Category category)
+        public void TAdd(Category t)
         {
-            _category.Insert(category);
+            _category.Insert(t);
         }
 
-        public void CategoryDelete(Category category)
+        public void TDelete(Category t)
         {
-            _category.Delete(category);
+            _category.Delete(t);
         }
 
-        public void CategoryUpdate(Category category)
+        public void TUpdate(Category t)
         {
-            _category.Update(category);
+            _category.Update(t);
         }
-
-        public Category GetById(int id)
+        public Category TGetById(int id)
         {
             return _category.GetByID(id);
         }

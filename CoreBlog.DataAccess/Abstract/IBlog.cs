@@ -10,5 +10,6 @@ namespace CoreBlog.DataAccess.Abstract
     public interface IBlog : IGeneric<Blog>
     {
         List<Blog> GetListWithCategory();
+        List<Blog> GetListWithCategoryByWriter(int id);
     }
 }

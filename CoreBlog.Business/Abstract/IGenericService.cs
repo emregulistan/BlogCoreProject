@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace CoreBlog.Business.Abstract
 {
-	public interface IWriterService : IGenericService<Writer>
-	{
-		List<Writer> GetWriterById(int id);
-	}
+    public interface IGenericService<T>
+    {
+        void TAdd(T t);
+        void TDelete(T t);
+        void TUpdate(T t);
+        List<T> GetList();
+        T TGetById(int id);
+    }
 }

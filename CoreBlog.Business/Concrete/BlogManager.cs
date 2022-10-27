@@ -17,33 +17,20 @@ namespace CoreBlog.Business.Concrete
 		{
 			_blog = blog;
 		}
-
-		public void BlogAdd(Blog blog)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void BlogDelete(Blog blog)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void BlogUpdate(Blog blog)
-		{
-			throw new NotImplementedException();
-		}
-
 		public List<Blog> GetBlogListWithCategory()
 		{
 			return _blog.GetListWithCategory();
 		}
-
-		public Blog GetById(int id)
+		public List<Blog> GetListWithCategoryByWriterBm(int id)
 		{
-			throw new NotImplementedException();
+			return _blog.GetListWithCategoryByWriter(id);
 		}
+		public Blog TGetById(int id)
+		{
+			return _blog.GetByID(id);
+        }
 
-		public List<Blog> GetBlogByID(int id)
+        public List<Blog> GetBlogByID(int id)
 		{
 			return _blog.GetListAll(x => x.BlogID == id);
 		}
@@ -60,6 +47,21 @@ namespace CoreBlog.Business.Concrete
 		public List<Blog> GetBlogListByWriter(int id)
 		{
 			return _blog.GetListAll(x => x.WriterID == id);
+		}
+
+		public void TAdd(Blog t)
+		{
+			_blog.Insert(t);
+		}
+
+		public void TDelete(Blog t)
+		{
+			_blog.Delete(t);
+		}
+
+		public void TUpdate(Blog t)
+		{
+			_blog.Update(t);
 		}
 	}
 }

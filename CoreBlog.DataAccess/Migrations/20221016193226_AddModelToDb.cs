@@ -102,7 +102,7 @@ namespace CoreBlog.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WriterName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WriterAbout = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WriterImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WriterImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WriterMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WriterPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WriterStatus = table.Column<bool>(type: "bit", nullable: false)

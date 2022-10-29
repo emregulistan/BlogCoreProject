@@ -40,12 +40,12 @@ namespace CoreBlog.Business.Concrete
 
 		public Writer TGetById(int id)
 		{
-			throw new NotImplementedException();
+			return _writer.GetByID(id);
 		}
 
 		public void TUpdate(Writer t)
 		{
-			throw new NotImplementedException();
+			_writer.Update(t);
 		}
 
 	}

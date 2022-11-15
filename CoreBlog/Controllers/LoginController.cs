@@ -1,53 +1,56 @@
-﻿using CoreBlog.DataAccess.Concrete;
-using CoreBlog.Entity.Concrete;
-using Microsoft.AspNetCore.Authentication;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+
+using CoreBlog.Models;
 
 namespace CoreBlog.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
-        [AllowAnonymous]
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        public LoginController(SignInManager<IdentityUser> signInManager)
+        {
+            _signInManager = signInManager;
+        }
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> Index(Writer p)
+        public async Task<IActionResult> Index(SignInViewModel model)
         {
-            Context c = new Context();
-            var datavalue = c.Writers.FirstOrDefault(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword);
-            if(datavalue != null)
+            if (ModelState.IsValid)
             {
-                var claims = new List<Claim>
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, lockoutOnFailure: false);
+                if (result.Succeeded)
                 {
-                    new Claim(ClaimTypes.Name,p.WriterMail)
-                };
-                var useridentity = new ClaimsIdentity(claims, "a");
-                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
-                await HttpContext.SignInAsync(principal);
-                return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
             }
-            else
-            {
-                return View();
-            }
+            return View();
+        }
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
+        }
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
-
-//Context c = new Context();
-//var datavalue = c.Writers.FirstOrDefault(x => x.WriterMail == p.WriterMail &&
-//x.WriterPassword == p.WriterPassword);
-//if (datavalue != null)
-//{
-//    HttpContext.Session.SetString("username", p.WriterMail);
-//    return RedirectToAction("Index", "Writer");
-//}
-//else
-//{
-//    return View();
-//}

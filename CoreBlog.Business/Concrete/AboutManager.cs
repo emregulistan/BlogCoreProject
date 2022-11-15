@@ -20,7 +20,7 @@ namespace CoreBlog.Business.Concrete
 
 		public About TGetById(int id)
 		{
-			throw new NotImplementedException();
+            return _about.GetByID(id);
 		}
 
 		public List<About> GetList()
@@ -30,17 +30,17 @@ namespace CoreBlog.Business.Concrete
 
 		public void TAdd(About t)
 		{
-			throw new NotImplementedException();
+            _about.Insert(t);
 		}
 
 		public void TDelete(About t)
 		{
-			throw new NotImplementedException();
+            _about.Delete(t);
 		}
 
 		public void TUpdate(About t)
 		{
-			throw new NotImplementedException();
+            _about.Update(t);
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace CoreBlog.Areas.Admin.ViewComponents.Statistic
         {
             ViewBag.v1 = bm.GetList().Count();
             ViewBag.v2 = c.Contacts.Count();
-            ViewBag.v2 = c.Comments.Count();
+            ViewBag.v3 = c.Comments.Count();
             return View();
         }
     }

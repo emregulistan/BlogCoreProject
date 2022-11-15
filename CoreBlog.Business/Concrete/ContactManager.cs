@@ -19,9 +19,29 @@ namespace CoreBlog.Business.Concrete
 			_contact = contact;
 		}
 
-		public void ContactAdd(Contact contact)
+		public List<Contact> GetList()
 		{
-			_contact.Insert(contact);
-		}
-	}
+            return _contact.GetListAll();
+        }
+
+        public void TAdd(Contact t)
+		{
+            _contact.Insert(t);
+        }
+
+        public void TDelete(Contact t)
+		{
+            _contact.Delete(t);
+        }
+
+        public Contact TGetById(int id)
+		{
+            return _contact.GetByID(id);
+        }
+
+        public void TUpdate(Contact t)
+		{
+            _contact.Update(t);
+        }
+    }
 }

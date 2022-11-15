@@ -1,4 +1,5 @@
 ﻿using CoreBlog.Entity.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreBlog.DataAccess.Concrete
 {
-    public class Context : IdentityDbContext<AppUser, AppRole, int>
+    public class Context : IdentityDbContext<IdentityUser>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

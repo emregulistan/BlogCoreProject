@@ -10,5 +10,7 @@ namespace CoreBlog.DataAccess.Abstract
     public interface IMessage2 : IGeneric<Message2>
     {
         List<Message2> GetListWithMessageByWriter(int id);
+        List<Message2> GetSendBoxWithMessageByWriter(int id);
+
     }
 }

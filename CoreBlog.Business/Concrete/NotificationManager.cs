@@ -25,22 +25,22 @@ namespace CoreBlog.Business.Concrete
 
         public void TAdd(Notification t)
         {
-            throw new NotImplementedException();
+            _notification.Insert(t);
         }
 
         public void TDelete(Notification t)
         {
-            throw new NotImplementedException();
+            _notification.Delete(t);
         }
 
         public Notification TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _notification.GetByID(id);
         }
 
         public void TUpdate(Notification t)
         {
-            throw new NotImplementedException();
+            _notification.Update(t);
         }
     }
 }

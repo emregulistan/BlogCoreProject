@@ -7,13 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreBlog.Business.Abstract
 {
-	public interface ICommentService
+	public interface ICommentService : IGenericService<Comment>
 	{
-        void CommentAdd(Comment comment);
-        //void CommentDelete(Comment comment);
-        //void CommentUpdate(Comment comment);
-        List<Comment> GetList(int id);
-        //Comment GetById(int id);
-
     }
 }

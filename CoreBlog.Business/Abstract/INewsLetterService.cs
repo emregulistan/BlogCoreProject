@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreBlog.Business.Abstract
 {
-    public interface INewsLetterService
+    public interface INewsLetterService : IGenericService<NewsLetter>
     {
-        void AddNewsLetter(NewsLetter newsletter);
     }
 }

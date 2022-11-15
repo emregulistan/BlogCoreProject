@@ -27,25 +27,30 @@ namespace CoreBlog.Business.Concrete
         {
             return _message.GetListAll();
         }
+        public List<Message> GetList(string receiveEmail)
+        {
+            return _message.GetListAll(w => w.Receiver == receiveEmail);
+        }
+
 
         public void TAdd(Message t)
         {
-            throw new NotImplementedException();
+            _message.Insert(t);
         }
 
         public void TDelete(Message t)
         {
-            throw new NotImplementedException();
+            _message.Delete(t);
         }
 
         public Message TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _message.GetByID(id);
         }
 
         public void TUpdate(Message t)
         {
-            throw new NotImplementedException();
+            _message.Update(t);
         }
     }
 }

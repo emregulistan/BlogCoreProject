@@ -6,10 +6,10 @@ namespace CoreBlog.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryManager cm = new CategoryManager(new EFCategoryRepository());
+        CategoryManager _categoryManager = new CategoryManager(new EFCategoryRepository());
         public IActionResult Index()
         {
-            var values = cm.GetList();
+            var values = _categoryManager.GetList();
             return View(values);
         }
     }

@@ -1,6 +1,8 @@
 ﻿using CoreBlog.Business.Concrete;
 using CoreBlog.DataAccess.Concrete;
 using CoreBlog.DataAccess.EntityFramework;
+using CoreBlog.Entity.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreBlog.ViewComponents.Writer
@@ -8,15 +10,16 @@ namespace CoreBlog.ViewComponents.Writer
     public class WriterAboutOnDashboard : ViewComponent
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
-        Context c = new Context();
+        Context _c = new Context();
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var usermail = User.Identity.Name;
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-            var values = wm.GetWriterById(writerID);
+            var userName = User.Identity.Name;
+            ViewBag.data = userName;
+            var userMail = _c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerId = _c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var values = wm.GetWriterById(writerId);
             return View(values);
         }
-
     }
 }

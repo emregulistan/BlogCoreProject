@@ -1,60 +1,51 @@
-﻿@model CoreBlog.Entity.Concrete.Writer
+﻿@model SignUpViewModel
 @{
-    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<section class="main-content-w3layouts-agileits">
-    <div class="container">
-        <h3 class="tittle">Yazar Kayıt Sayfası</h3>
-        <div class="inner-sec">
-            <div class="login p-5 bg-light mx-auto mw-100">
-                @using (Html.BeginForm("Index", "Register", FormMethod.Post))
-                {
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="validationCustom01">Adınız Soyadınız</label>
-                            @Html.TextBoxFor(x=>x.WriterName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x=>x.WriterName,"", new { @class = "text-danger"})
-                        @*<input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required="">*@
+<script src="~/CoreBlogTema/js/jquery-2.2.3.min.js"></script>
+<script src="/cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="container">
+    <div class="inner-sec">
+        <div class="login p-5 bg-light mx-auto mw-100 text-center">
+            <div>
+                <h3 class="text-center">Yeni bir hesap oluştur !</h3>
+                <br />
+                <form class="form-group" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Mail Adresiniz</label>
+                        <input type="email" class="form-control" asp-for="@Model.Email" placeholder="Email" required>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="validationCustom02">Mail Adresi</label>
-                            @Html.TextBoxFor(x=>x.WriterMail, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x=>x.WriterMail,"", new { @class = "text-danger"})
-                        @*<input type="email" class="form-control" name="WriterMail" id="validationDefault02" placeholder="" required="">*@
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-6 mb-3">
+                                <label>Parolanız</label>
+                                <input type="password" class="form-control" asp-for="@Model.Password" placeholder="Parola" required>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label>Parola Onayı</label>
+                                <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" placeholder="Parola Tekrar" required>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="exampleInputPassword1 mb-2">Şifre</label>
-                            @Html.TextBoxFor(x=>x.WriterPassword, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x=>x.WriterPassword,"", new { @class = "text-danger"})
-                        @*<input type="password" class="form-control" name="WriterPassword" id="password1" placeholder="" required="">*@
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="exampleInputPassword2 mb-2">Görsel Dosya Yolu</label>
-                            @Html.TextBoxFor(x=>x.WriterImage, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x=>x.WriterImage,"", new { @class = "text-danger"})
-                        @*<input type="text" class="form-control" name="WriterImage" id="password2" placeholder="" required="">*@
-                    </div>
-
-                </div>
-                <button type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
-                <p>
-                    <a href="#" id="btn1">Tüm şartları okudum, kabul ediyorum.</a>
-                </p>
-                }
+                    <div class="text-danger mb-3" asp-validation-summary="All"></div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary block full-width m-b">Kayıt Ol</button>
+                    </div>                   
+                    <p class="text-muted text-center"><small>Bir hesabınız var mı ?</small></p>
+                    <a class="btn btn-sm btn-white btn-block" href="/Login/Index">Giriş Yap</a>                    
+                </form>
             </div>
         </div>
     </div>
-    <br />
-    <script>
-        $('#btn1').click(function () {
-            swal("Site Kabul Şartları","Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber epostaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer eposta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği bir şekilde veri tabanlarımızda saklanmaktadır.");
+</div>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
         });
-    </script>
-</section>
+    });
+</script>
+
+
 

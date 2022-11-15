@@ -20,5 +20,13 @@ namespace CoreBlog.DataAccess.EntityFramework
                 return c.Message2s.Include(x => x.SenderUser).Where(x => x.ReceiverID == id).ToList();
             }
         }
+
+        public List<Message2> GetSendBoxWithMessageByWriter(int id)
+        {
+            using (var context = new Context())
+            {
+                return context.Message2s.Include(x => x.ReceiverUser).Where(y => y.SenderID == id).ToList();
+            }
+        }
     }
 }

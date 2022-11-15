@@ -18,9 +18,29 @@ namespace CoreBlog.Business.Concrete
             _newsletter = newsletter;
         }
 
-        public void AddNewsLetter(NewsLetter newsletter)
+        public List<NewsLetter> GetList()
         {
-            _newsletter.Insert(newsletter);
+            return _newsletter.GetListAll();
+        }
+
+        public void TAdd(NewsLetter t)
+        {
+            _newsletter.Insert(t);
+        }
+
+        public void TDelete(NewsLetter t)
+        {
+            _newsletter.Delete(t);
+        }
+
+        public NewsLetter TGetById(int id)
+        {
+            return _newsletter.GetByID(id);
+        }
+
+        public void TUpdate(NewsLetter t)
+        {
+            _newsletter.Update(t);
         }
     }
 }

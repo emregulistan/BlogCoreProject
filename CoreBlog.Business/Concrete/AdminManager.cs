@@ -20,27 +20,27 @@ namespace CoreBlog.Business.Concrete
 
         public List<Admin> GetList()
         {
-            throw new NotImplementedException();
+            return _admin.GetListAll();
         }
 
         public void TAdd(Admin t)
         {
-            throw new NotImplementedException();
+            _admin.Insert(t);
         }
 
         public void TDelete(Admin t)
         {
-            throw new NotImplementedException();
+            _admin.Delete(t);
         }
 
         public Admin TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _admin.GetByID(id);
         }
 
         public void TUpdate(Admin t)
         {
-            throw new NotImplementedException();
+            _admin.Update(t);
         }
     }
 }

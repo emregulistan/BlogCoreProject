@@ -8,7 +8,7 @@ namespace CoreBlog.Controllers
 
     public class ContactController : Controller
 	{
-        ContactManager cm = new ContactManager(new EfContactRepository());
+        ContactManager _contactManager = new ContactManager(new EfContactRepository());
 
         [HttpGet]
 		public IActionResult Index()
@@ -20,7 +20,7 @@ namespace CoreBlog.Controllers
 		{
 			p.ContactDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 			p.ContactStatus = true;
-			cm.ContactAdd(p);
+			_contactManager.TAdd(p);
 			return RedirectToAction("Index","Blog");
 		}
 	}

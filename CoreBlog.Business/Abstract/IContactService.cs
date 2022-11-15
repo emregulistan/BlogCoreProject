@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoreBlog.Business.Abstract
 {
-	public interface IContactService 
+	public interface IContactService : IGenericService<Contact>
 	{
-		void ContactAdd(Contact contact);
 	}
 }

@@ -6,15 +6,15 @@ namespace CoreBlog.Controllers
 {
     public class AboutController : Controller
     {
-        AboutManager abm = new AboutManager(new EfAboutRepository());
+        private AboutManager _aboutManager = new AboutManager(new EfAboutRepository());
         public IActionResult Index()
         {
-            var values = abm.GetList();
-            return View(values);
+            var socialMedias = _aboutManager.GetList();
+            return View(socialMedias);
         }
         public PartialViewResult SocialMediaAbout()
         {
-
+            var socialMedias = _aboutManager.GetList();
             return PartialView();
         }
     }

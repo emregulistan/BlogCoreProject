@@ -12,10 +12,10 @@ namespace CoreBlog.Business.ValidationRules
     {
         public CategoryValidator()
         {
-            RuleFor(x => x.CategoryName).NotEmpty().WithMessage("Kategori adını boş geçemezsiniz");
-            RuleFor(x => x.CategoryDescription).NotEmpty().WithMessage("Kategori içeriğini boş geçemezsiniz");
-            RuleFor(x => x.CategoryName).MaximumLength(33).WithMessage("Kategori adı en fazla 50 karakter olmalıdır");
-            RuleFor(x => x.CategoryName).MinimumLength(5).WithMessage("Kategori adı en az 2 karakter olmalıdır");
+            RuleFor(x => x.CategoryName).NotEmpty().WithMessage("Lütfen Kategori Adını Boş Bırakmayınız")
+                .MinimumLength(2).WithMessage("Lütfen 2 Karakter'den daha fazla Veri Girişi Yapınız")
+                .MaximumLength(50).WithMessage("Lütfen 50 Karakter'den daha az Veri Girişi Yapınız");
+            RuleFor(x => x.CategoryDescription).NotEmpty().WithMessage("Lütfen Kategori Açıklamasını Boş Bırakmayınız");
         }
     }
 }

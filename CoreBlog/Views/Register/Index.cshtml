@@ -4,26 +4,26 @@
 }
 <script src="~/CoreBlogTema/js/jquery-2.2.3.min.js"></script>
 <script src="/cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div class="container">
-    <div class="inner-sec">
-        <div class="login p-5 bg-light mx-auto mw-100 text-center">
-            <div>
-                <h3 class="text-center">Yeni bir hesap oluştur !</h3>
-                <br />
+
+<div class="main-content-w3layouts-agileits">
+    <div class="container">
+    <h3 class="tittle">Kaydol</h3>
+    <div class="row inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100 text-center">
                 <form class="form-group" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>Mail Adresiniz</label>
-                        <input type="email" class="form-control" asp-for="@Model.Email" placeholder="Email" required>
+                        <label for="exampleInputEmail1 mb-2">Email adresiniz</label>
+                        <input type="email" class="form-control" asp-for="@Model.Email" placeholder="Email Adresinizi Giriniz" required>
                     </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-6 mb-3">
+                    <div>
+                        <div class="form">
+                            <div class="form-group">
                                 <label>Parolanız</label>
-                                <input type="password" class="form-control" asp-for="@Model.Password" placeholder="Parola" required>
+                                <input type="password" class="form-control" asp-for="@Model.Password" placeholder="Parolanızı giriniz" required>
                             </div>
-                            <div class="col-6 mb-3">
+                            <div class="form-group">
                                 <label>Parola Onayı</label>
-                                <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" placeholder="Parola Tekrar" required>
+                                <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" placeholder="Parolanızı Tekrar Giriniz" required>
                             </div>
                         </div>
                     </div>

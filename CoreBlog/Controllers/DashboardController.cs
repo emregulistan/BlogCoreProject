@@ -18,7 +18,7 @@ namespace CoreBlog.Controllers
             var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             var writerId = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             ViewBag.blogsCount = _blogManager.GetList().Count;
-            ViewBag.blogCountByWriter = _blogManager.GetBlogListByWriter(2).Count;
+            ViewBag.blogCountByWriter = _blogManager.GetBlogListByWriter(writerId).Count;
             ViewBag.categoriesCount = _categoryManager.GetList().Count;
             return View();
         }

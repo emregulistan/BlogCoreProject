@@ -34,11 +34,9 @@ namespace CoreBlog.Controllers
         [HttpGet]
         public IActionResult BlogListByWriter()
         {
-            var userName = User.Identity.Name;
-            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
-                .FirstOrDefault();
-            var values = _blogManager.GetBlogListByWriter(writerId);
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = _blogManager.GetListWithCategoryByWriterBm(writerID);
             return View(values);
         }
         [HttpGet]
@@ -50,14 +48,14 @@ namespace CoreBlog.Controllers
                                                    Text = x.CategoryName,
                                                    Value = x.CategoryID.ToString()
                                                    }).ToList();
-            ViewBag.cv = categoryvalues;
+            ViewBag.categoryList = categoryvalues;
             return View();
         }        
         [HttpPost]
         public IActionResult BlogAdd(Blog p)
         {
-            var userMail = User.Identity.Name;
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(p);
             if (results.IsValid)
@@ -75,7 +73,6 @@ namespace CoreBlog.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            GetCategoryList();
             return View();
         }
         public IActionResult DeleteBlog(int id)
@@ -88,31 +85,26 @@ namespace CoreBlog.Controllers
         public IActionResult EditBlog(int id)
         {
             var blogvalue = _blogManager.TGetById(id);
-            GetCategoryList();
+            List<SelectListItem> categoryvalues = (from x in _categoryManager.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryID.ToString()
+                                                   }).ToList();
+            ViewBag.cv = categoryvalues;
             return View(blogvalue);
         }
         [HttpPost]
         public IActionResult EditBlog(Blog p)
         {
-            var userMail = User.Identity.Name;
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
             var blogValue = _blogManager.TGetById(p.BlogID);
             p.WriterID = writerID;
             p.BlogCreateDate = DateTime.Parse(blogValue.BlogCreateDate.ToShortDateString());
             p.BlogStatus = true;
             _blogManager.TUpdate(p);
             return RedirectToAction("BlogListByWriter");
-        }
-
-        public void GetCategoryList()
-        {
-            List<SelectListItem> categories = (from c in _categoryManager.GetList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = c.CategoryName,
-                                                   Value = c.CategoryID.ToString()
-                                               }).ToList();
-            ViewBag.categoriesList = categories;
         }
     }
 }

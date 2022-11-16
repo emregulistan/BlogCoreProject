@@ -1,15 +1,13 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
-	<title>Blog</title>
+	<title>Blog Teması</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
-	<meta name="keywords" content="ASP.NET 6 (.NET Core) Mvc ile geliştirilmiş Blog Projesi" />
+	<meta name="keywords" content=""/>
 
 	<script>
 		addEventListener("load", function () {
@@ -30,13 +28,11 @@
 </head>
 
 <body>
-	<!--Header-->
-
 	<header>
 		<div class="top-bar_sub_w3layouts container-fluid">
 			<div class="row">
 				<div class="col-md-4 logo text-left">
-					<a class="navbar-brand" href="/Writer/Index">
+					<a class="navbar-brand" href="/Blog/Index">
 						<i class="fab fa-linode"></i> Blog Projesi</a>
 				</div>
 				@await Html.PartialAsync("Partial2")
@@ -45,25 +41,15 @@
 					<ul class="social_list1 mt-3">
 
 						<li>
-							<a href="#" class="facebook1 mx-2">
+							<a href="/Login/Index" class="facebook1 mx-2">
 								<i class="fab fa-facebook-f"></i>
 
 							</a>
 						</li>
 						<li>
-							<a href="#" class="twitter2">
+							<a href="/Login/Index" class="twitter2">
 								<i class="fab fa-twitter"></i>
 
-							</a>
-						</li>
-						<li>
-							<a href="#" class="dribble3 mx-2">
-								<i class="fab fa-dribbble"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#" class="pin">
-								<i class="fab fa-pinterest-p"></i>
 							</a>
 						</li>
 					</ul>
@@ -72,16 +58,9 @@
 		</div>
 		@await Html.PartialAsync("Partial1")
 	</header>
-	<!--//header-->
-
 	@RenderBody()
 	@await Html.PartialAsync("Partial3")
-	<!---->
-
-	<!-- js -->
 	<script src="~/CoreBlogTema/js/jquery-2.2.3.min.js"></script>
-	<!-- //js -->
-	<!--/ start-smoth-scrolling -->
 	<script src="~/CoreBlogTema/js/move-top.js"></script>
 	<script src="~/CoreBlogTema/js/easing.js"></script>
 	<script>
@@ -94,18 +73,17 @@
 			});
 		});
 	</script>
-	<!--// end-smoth-scrolling -->
 
 	<script>
 		$(document).ready(function () {
-			/*
+			
 									var defaults = {
 							  			containerID: 'toTop', // fading element id
 										containerHoverID: 'toTopHover', // fading element hover id
 										scrollSpeed: 1200,
 										easingType: 'linear' 
 							 		};
-									*/
+									
 
 			$().UItoTop({
 				easingType: 'easeOutQuart'
@@ -116,11 +94,6 @@
 	<a href="#home" class="scroll" id="toTop" style="display: block;">
 		<span id="toTopHover" style="opacity: 1;"> </span>
 	</a>
-
-	<!-- //Custom-JavaScript-File-Links -->
 	<script src="~/CoreBlogTema/js/bootstrap.js"></script>
-
-
 </body>
-
 </html>

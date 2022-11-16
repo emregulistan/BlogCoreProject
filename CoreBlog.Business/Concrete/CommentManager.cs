@@ -17,6 +17,12 @@ namespace CoreBlog.Business.Concrete
 		{
 			_comment = comment;
 		}
+
+        public List<Comment> GetCommentWithBlog()
+        {
+            return _comment.GetListWithBlog();
+        }
+
         public List<Comment> GetList()
         {
             return _comment.GetListAll();

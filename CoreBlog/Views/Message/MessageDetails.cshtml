@@ -1,42 +1,20 @@
-﻿@using CoreBlog.Entity.Concrete
-@model List<Message2>
+﻿@model CoreBlog.Entity.Concrete.Message2
 @{
-    ViewData["Title"] = "SendBox";
+    ViewData["Title"] = "MessageDetails";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-<h1>Giden Kutusu</h1>
+<h1>Blog Düzenleme Sayfası</h1>
+
+@Html.HiddenFor(m => m.MessageID, new { @class = "form-control" })
 <br />
-<table class="table table-hover">
-    <tr>
-        <th>#</th>
-        <th>Konu</th>
-        <th>Alıcı</th>
-        <th>Tarih</th>
-        <th>Mesaj Durumu</th>
-        <th>Mesajı Aç</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <th>@item.MessageID</th>
-            <td>@item.Subject</td>
-            <td>@item.ReceiverUser.WriterName</td>
-            <td> @(((DateTime)item.MessageDate).ToString("dd MMMM yyyy"))</td>
-            <td>
-                @if (item.MessageStatus)
-                {
-                    <span class="badge badge-info">Mesaj Okundu!</span>
-                }
-                else
-                {
-                    <span class="badge badge-success">Mesaj Okunmadı!</span>
-                }
-            </td>
-            <td><a href="/Message/MessageDetails/@item.MessageID" class="btn btn-warning">Mesajı Aç</a></td>
-        </tr>
-    }
-</table>
+@Html.Label("Mesaj Başlığı")
+@Html.TextBoxFor(m => m.Subject, new { @class = "form-control", @disabled = "true" })
 <br />
-<a href="/Message/SendMessage/" class="btn btn-primary">Yeni Mesaj Oluştur</a>
+<br />
+@Html.Label("Mesaj İçeriği")
+@Html.TextAreaFor(m => m.MessageDetails, new { @class = "form-control", @disabled = "true" })
+<br />
+<br />
+<button class="btn btn-success">Yanıtla</button>
 

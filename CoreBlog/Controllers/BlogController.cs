@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CoreBlog.Controllers
-{   [AllowAnonymous]
+{  
     public class BlogController : Controller
     {
         BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         WriterManager _writerManager = new WriterManager(new EfWriterRepository());
         CategoryManager _categoryManager = new CategoryManager(new EFCategoryRepository());
         Context c = new Context();
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Index()
         {
@@ -27,7 +27,7 @@ namespace CoreBlog.Controllers
         [HttpGet]
         public IActionResult BlogReadAll(int id)
         {
-            ViewBag.i = id;
+            ViewBag.blog = id;
             var values = _blogManager.GetBlogByID(id);
             return View(values);
         }

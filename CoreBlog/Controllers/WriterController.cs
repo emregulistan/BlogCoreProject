@@ -35,18 +35,15 @@ namespace CoreBlog.Controllers
 		{
 			return View();
 		}
-		[AllowAnonymous]
 		public IActionResult Test()
 		{
 			return View();
 		}
-		[AllowAnonymous]
         [HttpGet]		
 		public PartialViewResult WriterNavbarPartial()
 		{
 			return PartialView();
 		}
-        [AllowAnonymous]
         [HttpGet]
         public PartialViewResult WriterFooterPartial()
 		{
@@ -70,13 +67,11 @@ namespace CoreBlog.Controllers
             var result = await _userManager.UpdateAsync(values);
             return RedirectToAction("Index", "Dashboard");
         }
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult WriterAdd()
         {
             return View();
         }
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult WriterAdd(AddProfileImage addProfileImage)
         {

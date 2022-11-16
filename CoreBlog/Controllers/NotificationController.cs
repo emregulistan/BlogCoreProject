@@ -12,7 +12,6 @@ namespace CoreBlog.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
         public IActionResult AllNotification()
         {
             var values = _notificationManager.GetList();

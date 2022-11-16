@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreBlog.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         private BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         private CategoryManager _categoryManager = new CategoryManager(new EFCategoryRepository());
-        [AllowAnonymous]
         public IActionResult Index()
         {
             Context context = new Context();
